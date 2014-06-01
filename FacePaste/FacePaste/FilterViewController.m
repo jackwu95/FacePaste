@@ -58,6 +58,7 @@
     
     _workingPicture = [[GPUImagePicture alloc] initWithImage:_workingImage];
     
+    // Create a thumbnail
     UIImage * thumbnail = [_workingImage thumbnailImage:100 transparentBorder:0 cornerRadius:0 interpolationQuality:kCGInterpolationHigh];
     _workingThumbnail = [[GPUImagePicture alloc] initWithImage:thumbnail];
 }
@@ -104,6 +105,7 @@
 #pragma mark - Actions
 
 - (IBAction)save:(id)sender {
+    // Save to Album
     UIImageWriteToSavedPhotosAlbum(_outputImageView.image, nil, nil, nil);
 }
 
@@ -115,9 +117,11 @@
     [filter removeAllTargets];
     [_workingPicture removeAllTargets];
     [_workingPicture addTarget:filter];
+    
     [filter useNextFrameForImageCapture];
     [_workingPicture processImage];
     
+    // Grab the filtered image
     UIImage * image = [filter imageFromCurrentFramebuffer];
     _outputImageView.image = image;
 }
@@ -129,9 +133,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     FilterCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"filterCell" forIndexPath:indexPath];
     
+    // Clean up the previous filter
     [_workingThumbnail removeTarget:cell.filter];
     [cell.filter removeAllTargets];
     
+    // Set up the new filter
     cell.filter = _filters[indexPath.row];
     [cell.filter removeAllTargets];
     

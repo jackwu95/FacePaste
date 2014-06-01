@@ -42,6 +42,7 @@
         
         UIImage * image = _mainImageView.image;
         if (!image.CGImage) {
+            // CIImage backed, need to create a CGImage
             CIContext * context = [CIContext contextWithOptions:nil];
             CGImageRef cgImage = [context createCGImage:image.CIImage fromRect:[image.CIImage extent]];
             image = [UIImage imageWithCGImage:cgImage];
@@ -78,6 +79,7 @@
 }
 
 - (IBAction)modify:(UIBarButtonItem *)sender {
+    // Hide/Show the face circles
     if (sender.tag == 1) {
         sender.tag = 0;
         for (UIView * v in self.faceButtons) {
@@ -93,9 +95,11 @@
 }
 
 - (void)faceSelected:(UIButton *)sender {
+    
     NSLog(@"Face Selected:%d",(int)sender.tag);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    // Process the image with the selected face
     [ImageProcessor sharedProcessor].delegate = self;
     [[ImageProcessor sharedProcessor] replaceFaces:[FaceDetector sharedDetector].detectedFaces inImage:_workingImage withFace:[FaceDetector sharedDetector].detectedFaces[sender.tag]];
 }
@@ -104,11 +108,14 @@
 
 - (void)setupWithImage:(UIImage*)image {
     UIImage * fixedImage;
+    
+    // Cap the image to 1000 * 1000 pixels maximum
     if (image.size.width * image.size.height > 1000 * 1000) {
         // This fixes orientation for us too!
         fixedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(1000,1000) interpolationQuality:kCGInterpolationHigh];
     }
     else {
+        // Fix orientation
         fixedImage = [image imageWithFixedOrientation];
     }
     _workingImage = fixedImage;
@@ -118,6 +125,7 @@
     }
     _faceButtons = nil;
 
+    // Reset the scroll view and the image view
     [_scrollView resetContainerView];
     _mainImageView = [[UIImageView alloc] initWithImage:_workingImage];
     _mainImageView.backgroundColor = [UIColor blueColor];
@@ -125,6 +133,7 @@
     _scrollView.subviewContainer.frame = _mainImageView.bounds;
     [_scrollView zoomOutToFitScreen:NO];
     
+    // Start face detection
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [FaceDetector sharedDetector].delegate = self;
     [[FaceDetector sharedDetector] detectFacesInImage:(_workingImage)];
@@ -141,6 +150,8 @@
         [alert show];
         return;
     }
+    
+    // Create a button for each face
     NSMutableArray * buttons = [@[] mutableCopy];
     for (NSInteger i = 0; i < faces.count; i++ ) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];

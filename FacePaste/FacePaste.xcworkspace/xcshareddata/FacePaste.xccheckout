@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E51B1418-0066-4AD2-BA77-839229A74B21</string>
+	<string>EBE92DA5-1AB8-4CA0-A624-2EFA99932EBE</string>
 	<key>IDESourceControlProjectName</key>
 	<string>FacePaste</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>4CA47899-3FAE-40EC-9C1B-7D4A6D5733D3</key>
-		<string>ssh://jackwu.me/FacePaste.git</string>
+		<key>633C78EB-808A-4EEC-B2FE-B4770A43BE1E</key>
+		<string>https://github.com/jackwu95/FacePaste.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>FacePaste.xcworkspace</string>
+	<string>FacePaste/FacePaste.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4CA47899-3FAE-40EC-9C1B-7D4A6D5733D3</key>
-		<string>..</string>
+		<key>633C78EB-808A-4EEC-B2FE-B4770A43BE1E</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://jackwu.me/FacePaste.git</string>
+	<string>https://github.com/jackwu95/FacePaste.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4CA47899-3FAE-40EC-9C1B-7D4A6D5733D3</string>
+	<string>633C78EB-808A-4EEC-B2FE-B4770A43BE1E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4CA47899-3FAE-40EC-9C1B-7D4A6D5733D3</string>
+			<string>633C78EB-808A-4EEC-B2FE-B4770A43BE1E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>FacePaste</string>
 		</dict>
